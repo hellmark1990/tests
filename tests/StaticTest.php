@@ -12,6 +12,7 @@ class StaticTest extends Test {
         $this->callStaticAsNonStaticMethod();
         $this->callPublicMethodAsStaticWithChanges();
         $this->callNonStaticAsStaticMethod();
+        $this->getStaticAttributeWithNonStaticMethod();
     }
 
     public function callStaticAsNonStaticMethod() {
@@ -30,6 +31,13 @@ class StaticTest extends Test {
         $class::setPublicAttribute('value');
 //        \helpers\DebugHelper::dd($class::getPublicAttribute());
         self::showInfo(__METHOD__, 'Can change non static data but only in static context.');
+    }
+
+    public function getStaticAttributeWithNonStaticMethod() {
+        $class = $this->testClass;
+        $class::$STATIC_ATTRIBUTE = 'value';
+//        \helpers\DebugHelper::dd($this->testClass->getStaticAttribute());
+        self::showInfo(__METHOD__, 'Can get.');
     }
 
 }

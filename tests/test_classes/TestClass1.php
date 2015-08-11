@@ -3,6 +3,8 @@
 namespace tests\testClasses;
 
 class TestClass1 extends BaseTestClass {
+    
+    public static $STATIC_ATTRIBUTE;
 
     public $publicAttribute;
     public $privateAttribute;
@@ -30,6 +32,10 @@ class TestClass1 extends BaseTestClass {
 
     public function getPrivateAttribute() {
         return $this->privateAttribute;
+    }
+    
+    public function getStaticAttribute(){
+        return self::$STATIC_ATTRIBUTE;
     }
 
 }
