@@ -2,8 +2,10 @@
 
 namespace tests\testClasses;
 
+use helpers\DebugHelper;
+
 class TestClass1 extends BaseTestClass {
-    
+
     public static $STATIC_ATTRIBUTE;
 
     public $publicAttribute;

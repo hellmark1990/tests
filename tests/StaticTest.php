@@ -2,6 +2,14 @@
 
 namespace tests;
 
+use helpers\DebugHelper;
+use tests\testClasses\TestClass1;
+
+/**
+ * Class StaticTest
+ * @package tests
+ * @property  TestClass1 $testClass
+ */
 class StaticTest extends Test {
 
     public function __construct($testClass) {
@@ -17,27 +25,29 @@ class StaticTest extends Test {
 
     public function callStaticAsNonStaticMethod() {
         $this->testClass->publicStaticMethod();
-        self::showInfo(__METHOD__, 'Can call satic method as non static in static context.');
+        self::showInfo(__METHOD__, 'Can call satic method as non static in static context.');   
     }
 
     public function callNonStaticAsStaticMethod() {
         $class = $this->testClass;
         $class::publicMethod();
-        self::showInfo(__METHOD__, 'Can call public method in static manner.');
+        self::showInfo(__METHOD__, 'Can call public method in static context.');
     }
 
     public function callPublicMethodAsStaticWithChanges() {
         $class = $this->testClass;
         $class::setPublicAttribute('value');
-//        \helpers\DebugHelper::dd($class::getPublicAttribute());
+        $class::setPrivateAttribute('value');
+        DebugHelper::dd($class::getPrivateAttribute());
         self::showInfo(__METHOD__, 'Can change non static data but only in static context.');
     }
 
     public function getStaticAttributeWithNonStaticMethod() {
         $class = $this->testClass;
         $class::$STATIC_ATTRIBUTE = 'value';
-//        \helpers\DebugHelper::dd($this->testClass->getStaticAttribute());
         self::showInfo(__METHOD__, 'Can get.');
     }
+
+
 
 }

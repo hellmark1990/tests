@@ -2,12 +2,15 @@
 
 namespace tests\testClasses;
 
-class BaseTestClass
+use helpers\DebugHelper;
+
+class TestClass2 extends BaseTestClass
 {
+
 
     public $field;
 
-    private $privateField;
+    public $privateField;
 
     /**
      * @return mixed
@@ -20,20 +23,22 @@ class BaseTestClass
     /**
      * @param mixed $privateField
      */
-    public function setPrivateField($privateField = 'baseValue')
+    public function setPrivateField($privateField = 'childValue')
     {
         $this->privateField = $privateField;
+        parent::setPrivateField();
     }
 
-    public function setField()
+
+    public function setField($value = 'childValue')
     {
-        $this->field = 'baseValue';
+        $this->field = $value;
+        parent::setField();
     }
 
     public function getField()
     {
         return $this->field;
     }
-
 
 }
